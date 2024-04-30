@@ -1,59 +1,112 @@
-<html xmlns="http://www.w3.org/1999/xhtml"><head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="ROBOTS" content="NONE">
-    <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
-    <link rel="icon" href=".static/blog.ico">
-    <link href="./index.css" rel="stylesheet">
-    <title>检测报告详情</title>
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>
+
+</title><link href="./index.css" rel="stylesheet"><link href="/Content/EasyUi/themes/default/easyui.css" rel="stylesheet"><link href="../Content/EasyUI/EasyUi.ex.css" rel="stylesheet"><link href="/Content/EasyUi/themes/icon.css" rel="stylesheet"><link href="/Content/EasyUi/icon-all.css" rel="stylesheet"><link href="/Content/Css/style.css" rel="stylesheet"><link href="/Content/Css/pagination.css" rel="stylesheet"><link href="/Content/Css/style-icon.css" rel="stylesheet">
+    <script src="/config.js"></script>
+    <script src="/Content/JavaScript/json2.js"></script>
+    <script src="/Content/JavaScript/jquery-1.8.2.min.js"></script>
+    <script src="/Content/JavaScript/jquery.easyui.min.js"></script>
+    <script src="/Content/JavaScript/Project/Project.CreateTab.js"></script>
+    <script src="/Content/JavaScript/Project/Project.Common.js"></script>
+    <script src="/Content/JavaScript/Project/StringFormat.js"></script>
+    <script src="/Content/JavaScript/jquery.pager.js"></script>
+    <script src="/Content/JavaScript/printThis.js"></script>
+    <script type="text/javascript">
+        $(function () {
+
+            var guid = $.getUrlParam('reportGuid');
+            p.get('/Service/MaterialMgeWebSvr.assx/GetTestReportForOut', { ReportGuid: guid }, function (data) {
+                if (data) {
+                    data.ReportDate = p.formatdate(data.ReportDate);
+                    if (data.Result == 1) {
+                        data.Result = "合格";
+                    }
+                    else if (data.Result == 2) {
+                        data.Result = "不合格";
+                    }
+                    else if (data.Result == 0) {
+                        data.Result = "无结论";
+                    }
+                    else {
+                        data.Result = "";
+                    }
+                    p.bindViewData("ff", "name", data);
+                }
+            });
+        });
+
+    </script>
 </head>
 <body>
-<div class="cardexplain">
-  <ul class="round">
-    <li class="title"><span class="none smallspan">检测报告详情<em class="ok">正常报告</em></span></li>
-        <table width="100%" border="0" cellpadding="0" cellspacing="0" class="cpbiaoge">
-            <tbody><tr>
-                <td>机构名称：四川华测建信检测技术有限公司</td>
-            </tr>
-            <tr>
-                <td>工程名称：瞪羚谷公园社区7号地块项目</td>
-            </tr>
-            <tr>
-                <td>报告编号：JXJC/FL2020-00080</td>
-            </tr>
-            <tr>
-                <td>报告日期：2020-06-25</td>
-            </tr>
-            <tr>
-                <td>检测资质类别：见证委托        </td>
-            </tr>
-            <tr>
-                <td>结论：</td>
-            </tr>
-            <tr>
-                <td>委托单位：成都高新投资集团有限公司</td>
-            </tr>
-            <tr>
-                <td>见证送检人：宋兆平 </td>
-            </tr>
-            <tr>
-                <td>结果数据：</td>
-            </tr>
-            <tr>
-                <td>质量监督号：</td>
-            </tr>
-            <tr>
-                <td>工程部位：</td>
-            </tr>
-            <tr>
-                <td>检测项目：防雷检测</td>
-            </tr>
-            <tr>
-                <td>描述：</td>
-            </tr>
-        </tbody></table>
-  </ul>
- </div>
+    <div class="info_main" style="width:90%; margin-left: auto; margin-right: auto; font-size: 18px;margin-top:70px">
+            <table id="ff" style="font-family:STSong;">
+                    <tbody><tr>
+                        <td colspan="2" style="text-align:center;padding-bottom:20px;font-size:48px;border:1px solid rgba(231, 231, 231, 1)">检测报告详情</td>
+                    </tr>
+                    <tr>
+                        <td class="tdTitle" style="width:260px;font-size:35px;vertical-align:top;border-left:1px solid rgba(231, 231, 231, 1)">检测机构公司：</td>
+                        <td class="tdContent" style="font-size:35px"><span name="TestUnitName" style="font-size:35px">中国建筑西南勘察设计研究院有限公司</span></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTitle" style="font-size:35px;vertical-align:top;border-left:1px solid rgba(231, 231, 231, 1)">工程名称：</td>
+                        <td class="tdContent" style="font-size:35px"><span name="ProjectName" style="font-size:35px">新川网易成都研究院项目勘察一设计一施工总承包</span></td>
+                    </tr>
+                <tr>
+                        <td class="tdTitle" style="font-size:35px;vertical-align:top;border-left:1px solid rgba(231, 231, 231, 1)">委托单位：</td>
+                        <td class="tdContent" style="font-size:35px"><span name="EntrustUnitName" style="font-size:35px">成都高投乐创置业有限公司</span></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTitle" style="font-size:35px;vertical-align:top;border-left:1px solid rgba(231, 231, 231, 1)">报告编号：</td>
+                        <td class="tdContent" style="font-size:35px"><span name="ReportNumber" style="font-size:35px">ZJXKBGZ-23-0305-1095-001</span></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTitle" style="font-size:35px;vertical-align:top;border-left:1px solid rgba(231, 231, 231, 1)">报告日期：</td>
+                        <td class="tdContent" style="font-size:35px"><span name="ReportDate" style="font-size:35px">2023-02-13</span></td>
+                    </tr>
+                <tr>
+                        <td class="tdTitle" style="font-size:35px;vertical-align:top;border-left:1px solid rgba(231, 231, 231, 1)">检测结果：</td>
+                        <td class="tdContent" style="font-size:35px"><span name="Result" style="font-size:35px">合格</span></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTitle" style="font-size:35px;vertical-align:top;border-left:1px solid rgba(231, 231, 231, 1)">资质类别：</td>
+                        <td class="tdContent" style="font-size:35px"><span name="QualifyCategory" style="font-size:35px">见证取样</span></td>
+                    </tr>
+                    
+                    
+                    <tr>
+                        <td class="tdTitle" style="font-size:35px;vertical-align:top;border-left:1px solid rgba(231, 231, 231, 1)">见证人：</td>
+                        <td class="tdContent" style="font-size:35px"><span name="Witness" style="font-size:35px">李银海</span></td>
+                    </tr>
+                <tr>
+                        <td class="tdTitle" style="font-size:35px;vertical-align:top;border-left:1px solid rgba(231, 231, 231, 1)">送样人：</td>
+                        <td class="tdContent" style="font-size:35px"><span name="SendSamplePerson" style="font-size:35px">蒋云艳</span></td>
+                    </tr>
+                <tr>
+                        <td class="tdTitle" style="font-size:35px;vertical-align:top;border-left:1px solid rgba(231, 231, 231, 1)">工程监督号：</td>
+                        <td class="tdContent" style="font-size:35px"><span name="QualityNumber" style="font-size:35px">GX-ZJF-2022-0008</span></td>
+                    </tr>
+                <tr>
+                        <td class="tdTitle" style="font-size:35px;vertical-align:top;border-left:1px solid rgba(231, 231, 231, 1)">工程地址：</td>
+                        <td class="tdContent" style="font-size:35px"><span name="ProjectAddress" style="font-size:35px">高新区观东二街</span></td>
+                    </tr>
+                <tr>
+                        <td class="tdTitle" style="font-size:35px;vertical-align:top;border-left:1px solid rgba(231, 231, 231, 1)">检测项目：</td>
+                        <td class="tdContent" style="font-size:35px"><span name="Type" style="font-size:35px">混凝土抗压</span></td>
+                    </tr>
+                <tr>
+                        <td class="tdTitle" style="font-size:35px;vertical-align:top;border-left:1px solid rgba(231, 231, 231, 1)">检测结论：</td>
+                        <td class="tdContent" style="font-size:35px;word-break: break-all; word-wrap: break-word;"><span name="Conclusion" style="font-size:35px">∕</span></td>
+                    </tr>
+                    <tr>
+                        <td class="tdTitle" style="font-size:35px;vertical-align:top;border-left:1px solid rgba(231, 231, 231, 1)">检测数据：</td>
+                        <td class="tdContent" style="font-size:35px;word-break: break-all; word-wrap: break-word;"><span name="TestData" style="font-size:35px">荷载：548.6kN,528.3kN,565.9kN;强度：52.1MPa,50.2MPa,53.8MPa代表值：52.0MPa</span></td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="tdTitle" style="font-size:35px;vertical-align:top;border-left:1px solid rgba(231, 231, 231, 1)">备注：</td>
+                        <td class="tdContent" style="font-size:35px;word-break: break-all; word-wrap: break-word;"><span name="Remark" style="font-size:35px">∕</span></td>
+                    </tr>
+            </tbody></table>
+    </div>
 
 
 </body></html>
